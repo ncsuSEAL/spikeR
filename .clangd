@@ -1,0 +1,6 @@
+CompileFlags:
+  Add: 
+    - "-std=c++14"
+    - "-I/usr/local/lib/R/include"
+    - "-I/usr/local/lib/R/library/RcppArmadillo/include"
+    - "-I/usr/local/lib/R/library/Rcpp/include"
