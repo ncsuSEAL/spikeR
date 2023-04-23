@@ -2,13 +2,8 @@
  * Author(s):    Owen Smith, Jenna Abrahamson
  * Created:   	 04.23.2023
  * License:      MIT
- * 
  **/
-#include <RcppArmadillo.h>
-#include <Rcpp.h>
-
-using namespace Rcpp;
-
+#include "spiker.h"
 
 double populationSD(NumericVector &x1, NumericVector&x2)
 {
