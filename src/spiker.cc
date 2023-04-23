@@ -1,3 +1,9 @@
+/**
+ * Author(s):    Owen Smith, Jenna Abrahamson
+ * Created:   	 04.23.2023
+ * License:      MIT
+ * 
+ **/
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
 
@@ -13,6 +19,7 @@ double populationSD(NumericVector &x1, NumericVector&x2)
 	return (n1 * mean(x1) + n2 * mean(x2)) / (n1 + n2);
 }
 
+// [[Rcpp::export]]
 IntegerVector SpikeCenter(
 	NumericVector signal,
 	int window,
