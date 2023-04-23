@@ -5,7 +5,7 @@ Version: 0.0.1
 Date: 2022-05-21
 Authors@R: c(
             person("Owen C.", "Smith", role = c("aut", "cre"),
-                     email = "osmith2@ncsu.com")
+                     email = "osmith2@ncsu.com"),
             person("Jenna", "Abrahamson", role = c("aut"))
             )
 Author: Owen Smith [aut, cre], Jenna Abrahamson [aut]
@@ -20,5 +20,5 @@ LinkingTo: Rcpp, RcppArmadillo, RcppDist
 Repository: CRAN
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Collate: 'RcppExports.R' 'spikeR.R'
+Collate: 'RcppExports.R' 'spikeR.R' 'checkTypes.R'
 Packaged: 2022-05-21 15:54:22 UTC; 19194
