@@ -14,11 +14,10 @@ Description: Spikefilters
 License: MIT
 Depends: R (>= 3.5.0), methods
 Imports: Rcpp (>= 1.0.7)
-Suggests: mvtnorm
+Suggests: tinytest
 NeedsCompilation: yes
 LinkingTo: Rcpp, RcppArmadillo, RcppDist
 Repository: CRAN
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Collate: 'RcppExports.R' 'spikeR.R' 'checkTypes.R'
-Packaged: 2022-05-21 15:54:22 UTC; 19194
+Collate: 'RcppExports.R' 'checkTypes.R'
