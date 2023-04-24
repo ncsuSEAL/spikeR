@@ -9,10 +9,12 @@ all: build clean
 
 
 build:
-	mkdir -p $(BUILDDIR); \
+	mkdir -p $(BUILDDIR) && \
 	R CMD build . 
 	mv $(PKGTAR) $(BUILDDIR)
 
+clean_build:
+	rm -rf $(BUILDDIR)
 
 install: build
 	cd $(BUILDDIR); \
@@ -22,6 +24,6 @@ clean:
 	cd $(BUILDDIR); \
 	$(RM) $(PKGTAR)
 
-check: build
+check: clean_build build
 	cd $(BUILDDIR); \
 	R CMD check ${PKGTAR}
