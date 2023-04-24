@@ -8,7 +8,7 @@ test_center_simple <- function() {
     npoints <- 365 * 1
     sig <- rep(1, npoints)
     sig[200:201] <- 1000
-    return(SpikeCenter(sig, 7, 0.1, 0.5, 10))
+    return(spikeCenter(sig, 7, 0.1, 0.5, 10))
 }
 expect_equal(test_center_simple(), c(200, 201))
 
@@ -20,7 +20,7 @@ test_center_seasonal <- function() {
     }
     sig[400:401] <- 1
     sig[200:203] <- -10
-    return(SpikeCenter(sig, 7, 0.1, 0.2, 10))
+    return(spikeCenter(sig, 7, 0.1, 0.2, 10))
 }
 
 expect_equal(test_center_seasonal(), c(400, 401))

@@ -15,7 +15,7 @@ double populationSD(NumericVector &x1, NumericVector&x2)
 }
 
 // [[Rcpp::export]]
-IntegerVector SpikeCenter(
+IntegerVector spikeCenter(
 	NumericVector signal,
 	int window,
 	double threshold,
