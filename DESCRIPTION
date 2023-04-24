@@ -20,4 +20,4 @@ LinkingTo: Rcpp, RcppArmadillo, RcppDist
 Repository: CRAN
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Collate: 'RcppExports.R' 'checkTypes.R'
+Collate: 'RcppExports.R'
