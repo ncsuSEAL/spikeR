@@ -18,5 +18,12 @@ IntegerVector spikeCenter(
 	int timeframe
 );
 
+IntegerVector spikeLag(
+	NumericVector signal,
+	int lag,
+	double threshold,
+	double influence,
+	int timeframe
+);
 
 #endif
