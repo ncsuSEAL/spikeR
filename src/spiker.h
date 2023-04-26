@@ -15,7 +15,8 @@ IntegerVector spikeCenter(
 	int window,
 	double threshold,
 	double spikeAmp,
-	int timeframe
+	int timeframe,
+	Nullable<IntegerVector> dates_idx
 );
 
 IntegerVector spikeLag(

@@ -4,6 +4,10 @@
  * License:      MIT
  **/
 #include "spiker.h"
+#include "Rcpp/sugar/functions/seq_along.h"
+#include "Rcpp/vector/instantiation.h"
+#include "Rinternals.h"
+#include <cstddef>
 
 double populationSD(NumericVector &x1, NumericVector&x2)
 {
@@ -20,19 +24,25 @@ IntegerVector spikeCenter(
 	int window,
 	double threshold,
 	double spikeAmp,
-	int timeframe
+	int timeframe,
+	Nullable<IntegerVector> dates_idx = R_NilValue
 ) {
 
 	int window_floor = floor(window / 2);
 	double center, pre_diff, post_diff;
 	NumericVector pre, post;
+    IntegerVector dates_idx_;
 
-	// Create date index from 1:n and remove all NA's in signal
-	IntegerVector dates_idx = seq_len(signal.size());
-	dates_idx = dates_idx[!is_na(signal)];
+    // NOTE: Should move this logic into the R function
+    if (dates_idx.isNull())
+    {
+        dates_idx_ = seq_len(signal.size());
+    } else {
+        dates_idx_ = dates_idx;
+    }
 
+	dates_idx_ = dates_idx_[!is_na(signal)];
 	signal = na_omit(signal);
-
 	IntegerVector spikes(signal.size());
 
 
@@ -60,8 +70,8 @@ IntegerVector spikeCenter(
 				) && 
 			// And the range of dates is within the timeframe threshold
 				(
-					max(dates_idx[Range(i + 1, i + window_floor)]) -
-					min(dates_idx[Range(i + 1, i + window_floor)]) <= 
+					max(dates_idx_[Range(i + 1, i + window_floor)]) -
+					min(dates_idx_[Range(i + 1, i + window_floor)]) <= 
 					timeframe 
 				)
 				) {
@@ -81,5 +91,5 @@ IntegerVector spikeCenter(
 
 	}
 
-	return dates_idx[spikes == 1];
+	return dates_idx_[spikes == 1];
 }

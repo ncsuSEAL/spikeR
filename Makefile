@@ -8,7 +8,7 @@ BUILDDIR := "build"
 all: build clean
 
 
-build:
+build: clean
 	mkdir -p $(BUILDDIR) && \
 	R CMD build . 
 	mv $(PKGTAR) $(BUILDDIR)
