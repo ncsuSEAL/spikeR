@@ -4,8 +4,9 @@
  * License:      MIT
  **/
 #include "spiker.h"
+#include <Rinternals.h>
 
-double populationSD(NumericVector &x1, NumericVector&x2)
+double populationSD(NumericVector &x1, NumericVector &x2)
 {
 	int n1, n2;
 
