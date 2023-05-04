@@ -4,10 +4,6 @@
  * License:      MIT
  **/
 #include "spiker.h"
-#include "Rcpp/sugar/functions/seq_along.h"
-#include "Rcpp/vector/instantiation.h"
-#include "Rinternals.h"
-#include <cstddef>
 
 double populationSD(NumericVector &x1, NumericVector&x2)
 {
