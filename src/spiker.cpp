@@ -72,7 +72,7 @@ IntegerVector spikeCenter(
 			// greater than the threshold deviations between the median values 
 			// pre- and post-observation of interest
 				(
-					abs(pre_diff - post_diff) >= 
+					fabs(pre_diff + post_diff) >= 
 					(threshold * populationSD(pre, post))
 				) && 
 			// And the range of dates is within the timeframe threshold
