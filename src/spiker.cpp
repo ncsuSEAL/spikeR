@@ -77,8 +77,7 @@ IntegerVector spikeCenter(
 				) && 
 			// And the range of dates is within the timeframe threshold
 				(
-					max(dates_idx_[Range(i + 1, i + window_floor)]) -
-					min(dates_idx_[Range(i + 1, i + window_floor)]) <= 
+                    (dates_idx_[i + window_floor] - dates_idx_[i - window_floor]) <=
 					timeframe 
 				)
 				) {
