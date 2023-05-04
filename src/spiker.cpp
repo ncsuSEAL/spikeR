@@ -55,7 +55,7 @@ IntegerVector spikeCenter(
 
 	if (signal.size() > window) {
 		// Loop through windows
-		for (int i = window; i < (signal.size() - window_floor); ++i) {
+		for (int i = window_floor; i < (signal.size() - window_floor); ++i) {
 			// Get observation of interest and window before/after
 			center = signal[i];
 			pre = signal[Range(i - window_floor, i - 1)];
