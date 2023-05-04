@@ -9,10 +9,20 @@
 double populationSD(NumericVector &x1, NumericVector &x2)
 {
 	int n1, n2;
+    double x, q1, q2;
 
 	n1 = x1.size();
 	n2 = x2.size();
-	return (n1 * mean(x1) + n2 * mean(x2)) / (n1 + n2);
+
+    // Sample variances
+    q1 = (n1 - 1) * var(x1) + n1 * pow(mean(x1), 2);
+    q2 = (n2 - 1) * var(x2) + n2 * pow(mean(x2), 2);
+
+    // Combined mean
+    x = (n1 * mean(x1) + n2 * mean(x2)) / (n1 + n2);
+
+    return sqrt(((q1 + q2) - (n1 + n2)* pow(x, 2)) / (n1 + n2 - 1));
+
 }
 
 // [[Rcpp::export]]
