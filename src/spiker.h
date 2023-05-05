@@ -1,9 +1,8 @@
 #ifndef SPIKER_H
 #define SPIKER_H
 
-
-#include <RcppArmadillo.h>
 #include <Rcpp.h>
+#include <Rinternals.h>
 
 using namespace Rcpp;
 
