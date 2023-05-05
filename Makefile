@@ -27,3 +27,8 @@ clean:
 check: clean_build build
 	cd $(BUILDDIR); \
 	R CMD check ${PKGTAR}
+
+# cmd for CI/CD without pdflatex
+ci-check: clean_build build
+	cd $(BUILDDIR); \
+	R CMD check ${PKGTAR} --no-manual --no-build-vignettes 
