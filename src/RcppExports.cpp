@@ -11,9 +11,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// spikeCenter
-IntegerVector spikeCenter(NumericVector signal, int window, double threshold, double spikeAmp, int timeframe, Nullable<IntegerVector> dates_idx);
-RcppExport SEXP _spiker_spikeCenter(SEXP signalSEXP, SEXP windowSEXP, SEXP thresholdSEXP, SEXP spikeAmpSEXP, SEXP timeframeSEXP, SEXP dates_idxSEXP) {
+// spike_center
+IntegerVector spike_center(NumericVector signal, int window, double threshold, double spikeAmp, int timeframe, Nullable<IntegerVector> dates_idx);
+RcppExport SEXP _spiker_spike_center(SEXP signalSEXP, SEXP windowSEXP, SEXP thresholdSEXP, SEXP spikeAmpSEXP, SEXP timeframeSEXP, SEXP dates_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,13 +23,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type spikeAmp(spikeAmpSEXP);
     Rcpp::traits::input_parameter< int >::type timeframe(timeframeSEXP);
     Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type dates_idx(dates_idxSEXP);
-    rcpp_result_gen = Rcpp::wrap(spikeCenter(signal, window, threshold, spikeAmp, timeframe, dates_idx));
+    rcpp_result_gen = Rcpp::wrap(spike_center(signal, window, threshold, spikeAmp, timeframe, dates_idx));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_spiker_spikeCenter", (DL_FUNC) &_spiker_spikeCenter, 6},
+    {"_spiker_spike_center", (DL_FUNC) &_spiker_spike_center, 6},
     {NULL, NULL, 0}
 };
 

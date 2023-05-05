@@ -9,7 +9,7 @@ using namespace Rcpp;
 double combined_stddev(NumericVector &x1, NumericVector &x2);
 
 
-IntegerVector spikeCenter(
+IntegerVector spike_center(
 	NumericVector signal,
 	int window,
 	double threshold,
@@ -18,7 +18,7 @@ IntegerVector spikeCenter(
 	Nullable<IntegerVector> dates_idx
 );
 
-IntegerVector spikeLag(
+IntegerVector spike_lag(
 	NumericVector signal,
 	int lag,
 	double threshold,

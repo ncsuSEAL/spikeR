@@ -6,7 +6,7 @@ load("../data/test_data.Rdata", envir = test_data)
 
 test_center_simple <- function() {
     sig <- test_data$simple_sig
-    return(spikeCenter(sig, 5, 0.05, 0.05, 100))
+    return(spike_center(sig, 5, 0.05, 0.05, 100))
 }
 expect_equal(test_center_simple(), c(200, 201))
 
@@ -22,7 +22,7 @@ test_center_seasonal <- function(dates_idx = NULL) {
     #` sig[200:201] <- 1000
 
     sig <- test_data$harmonic_sig
-    return(spikeCenter(sig, 5, 0.05, 0.05, 20, dates_idx))
+    return(spike_center(sig, 5, 0.05, 0.05, 20, dates_idx))
 }
 expect_equal(test_center_seasonal(), c(200, 201, 202, 203, 400, 401))
 expect_equal(test_center_seasonal(dates_idx = 1:(365 * 2)),
@@ -30,6 +30,6 @@ expect_equal(test_center_seasonal(dates_idx = 1:(365 * 2)),
 
 test_real_data <- function() {
     signal_df <- test_data$signal_df
-    return(spikeCenter(signal_df$y, 5, 0.2, 0.2, 365, signal_df$t))
+    return(spike_center(signal_df$y, 5, 0.2, 0.2, 365, signal_df$t))
 }
 expect_equal(test_real_data(), c(17544, 17849))

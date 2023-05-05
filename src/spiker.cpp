@@ -29,7 +29,7 @@ double combined_stddev(NumericVector &x1, NumericVector &x2)
 }
 
 // [[Rcpp::export]]
-IntegerVector spikeCenter(
+IntegerVector spike_center(
     NumericVector signal,
     int window,
     double threshold,
