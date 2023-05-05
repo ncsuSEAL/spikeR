@@ -6,7 +6,7 @@
 
 using namespace Rcpp;
 
-double populationSD(NumericVector &x1, NumericVector&x2);
+double combined_stddev(NumericVector &x1, NumericVector &x2);
 
 
 IntegerVector spikeCenter(

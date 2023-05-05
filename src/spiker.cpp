@@ -5,22 +5,26 @@
  **/
 #include "spiker.h"
 
-double populationSD(NumericVector &x1, NumericVector &x2)
+// TODO: Exapand to accept K number groups
+double combined_stddev(NumericVector &x1, NumericVector &x2)
 {
-    int n1, n2;
+    int n;
     double x, q1, q2;
 
-    n1 = x1.size();
-    n2 = x2.size();
+    n = x1.size();
+    if (n != x2.size()) {
+        throw std::invalid_argument("Vectors should be same length");
+    }
 
     // Sample variances
-    q1 = (n1 - 1) * var(x1) + n1 * pow(mean(x1), 2);
-    q2 = (n2 - 1) * var(x2) + n2 * pow(mean(x2), 2);
+    q1 = (n - 1) * var(x1) + n * pow(mean(x1), 2);
+    q2 = (n - 1) * var(x2) + n * pow(mean(x2), 2);
 
     // Combined mean
-    x = (n1 * mean(x1) + n2 * mean(x2)) / (n1 + n2);
+    x = (n * mean(x1) + n * mean(x2)) / (n + n);
 
-    return sqrt(((q1 + q2) - (n1 + n2)* pow(x, 2)) / (n1 + n2 - 1));
+    // TODO: change n * 2 -> n * k
+    return sqrt(((q1 + q2) - (n * 2) * pow(x, 2)) / (n * 2 - 1));
 
 }
 
@@ -71,7 +75,7 @@ IntegerVector spikeCenter(
                 // greater than the threshold deviations between the median
                 // values pre- and post-observation of interest
                 (fabs(pre_diff + post_diff) >= 
-                    (threshold * populationSD(pre, post))
+                    (threshold * combined_stddev(pre, post))
                 ) && 
                 // And the range of dates is within the timeframe threshold
                 ((dates_idx_[i + window_floor] - 
