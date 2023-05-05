@@ -9,6 +9,8 @@ all: build clean
 
 
 build: clean
+
+	Rscript -e "Rcpp::compileAttributes()" && \
 	mkdir -p $(BUILDDIR) && \
 	R CMD build . 
 	mv $(PKGTAR) $(BUILDDIR)
