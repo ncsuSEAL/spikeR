@@ -44,4 +44,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: pkg-binary
-          path: ./build/*tar.gz
+          path: ./*tar.gz
+
+
