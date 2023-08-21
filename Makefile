@@ -9,10 +9,8 @@ all: build clean
 
 
 build: clean
-
-	Rscript -e "Rcpp::compileAttributes()" && \
 	mkdir -p $(BUILDDIR) && \
-	R CMD build . 
+	R CMD build .
 	mv $(PKGTAR) $(BUILDDIR)
 
 clean_build:
@@ -33,4 +31,4 @@ check: clean_build build
 # cmd for CI/CD without pdflatex
 ci-check: clean_build build
 	cd $(BUILDDIR); \
-	R CMD check ${PKGTAR} --no-manual --no-build-vignettes 
+	R CMD check ${PKGTAR} --no-manual --no-build-vignettes

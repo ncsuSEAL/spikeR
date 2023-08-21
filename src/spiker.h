@@ -1,13 +1,8 @@
 #ifndef SPIKER_H
 #define SPIKER_H
 
-#include <Rcpp.h>
-#include <Rinternals.h>
-
-using namespace Rcpp;
-
-double combined_stddev(NumericVector &x1, NumericVector &x2);
-
+#include "common.h"
+#include "utils.h"
 
 IntegerVector spike_center(
 	NumericVector signal,
