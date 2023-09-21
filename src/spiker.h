@@ -4,21 +4,10 @@
 #include "common.h"
 #include "utils.h"
 
-IntegerVector spike_center(
-	NumericVector signal,
-	int window,
-	double threshold,
-	double spikeAmp,
-	int timeframe,
-	Nullable<IntegerVector> dates_idx
-);
+IntegerVector C_spike_center(NumericVector &signal, List &parameter_list,
+                             Nullable<IntegerVector> dates_idx);
 
-IntegerVector spike_lag(
-	NumericVector signal,
-	int lag,
-	double threshold,
-	double influence,
-	int timeframe
-);
+IntegerVector spike_lag(NumericVector signal, int lag, double threshold,
+                        double influence, int timeframe);
 
 #endif
