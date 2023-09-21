@@ -19,5 +19,9 @@ NeedsCompilation: yes
 LinkingTo: Rcpp, RcppArmadillo, RcppDist
 Repository: CRAN
 Encoding: UTF-8
-RoxygenNote: 7.1.2
-Collate: 'RcppExports.R'
+RoxygenNote: 7.2.3
+Collate: 
+    'RcppExports.R'
+    'init_params.R'
+    'type_check.R'
+    'spike.R'

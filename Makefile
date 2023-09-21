@@ -9,6 +9,7 @@ all: build clean
 
 
 build: clean
+	R -e "Rcpp::compileAttributes()"
 	mkdir -p $(BUILDDIR) && \
 	R CMD build .
 	mv $(PKGTAR) $(BUILDDIR)
@@ -24,7 +25,7 @@ clean:
 	cd $(BUILDDIR); \
 	$(RM) $(PKGTAR)
 
-check: clean_build build
+check: build
 	cd $(BUILDDIR); \
 	R CMD check ${PKGTAR}
 
