@@ -4,7 +4,7 @@
  * License:      MIT
  **/
 #include "param.h"
-#include "spiker.h"
+#include "spike_filter.h"
 
 /* What do we need?
    - Option to take a previous `spike` object and update for new data
@@ -18,7 +18,7 @@
 */
 
 // [[Rcpp::export]]
-IntegerVector C_spike_center(NumericVector &signal, List &parameter_list,
+IntegerVector C_spike_filter(NumericVector &signal, List &parameter_list,
                              Nullable<IntegerVector> dates_idx = R_NilValue
             ) {
   // TODO: Reduce number of allocs happening. Should pass signal by ref and

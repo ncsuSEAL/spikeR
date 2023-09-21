@@ -22,5 +22,3 @@ double combined_stddev(NumericVector &x1, NumericVector &x2)
     return sqrt(((q1 + q2) - (n * 2) * pow(x, 2)) / (n * 2 - 1));
 
 }
-
-

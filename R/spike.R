@@ -34,7 +34,7 @@ spike_filter <- function(
     )
 
     # Run and get outlier idx's
-    outlier_idx <- C_spike_center(signal, params, dates_idx)
+    outlier_idx <- C_spike_filter(signal, params, dates_idx)
 
   } else if (methods::is(object = previous, class2 = "Spike")) {
     params <- previous$params
@@ -52,7 +52,7 @@ spike_filter <- function(
     previous_idx_pnts <- previous$outlier_idx
 
 
-    outlier_idx <- C_spike_center(signal, params, dates_idx)
+    outlier_idx <- C_spike_filter(signal, params, dates_idx)
     outlier_idx <- c(previous_idx_pnts, outlier_idx) # Update outlier idx
   } else {
     # if neither condition is true, logic isn't working as expected.

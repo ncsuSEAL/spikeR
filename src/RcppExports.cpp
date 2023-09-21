@@ -11,22 +11,22 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// C_spike_center
-IntegerVector C_spike_center(NumericVector& signal, List& parameter_list, Nullable<IntegerVector> dates_idx);
-RcppExport SEXP _spiker_C_spike_center(SEXP signalSEXP, SEXP parameter_listSEXP, SEXP dates_idxSEXP) {
+// C_spike_filter
+IntegerVector C_spike_filter(NumericVector& signal, List& parameter_list, Nullable<IntegerVector> dates_idx);
+RcppExport SEXP _spiker_C_spike_filter(SEXP signalSEXP, SEXP parameter_listSEXP, SEXP dates_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type signal(signalSEXP);
     Rcpp::traits::input_parameter< List& >::type parameter_list(parameter_listSEXP);
     Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type dates_idx(dates_idxSEXP);
-    rcpp_result_gen = Rcpp::wrap(C_spike_center(signal, parameter_list, dates_idx));
+    rcpp_result_gen = Rcpp::wrap(C_spike_filter(signal, parameter_list, dates_idx));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_spiker_C_spike_center", (DL_FUNC) &_spiker_C_spike_center, 3},
+    {"_spiker_C_spike_filter", (DL_FUNC) &_spiker_C_spike_filter, 3},
     {NULL, NULL, 0}
 };
 
