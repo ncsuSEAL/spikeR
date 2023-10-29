@@ -5,7 +5,7 @@ PKGSRC  := $(shell basename `pwd`)
 PKGTAR  := $(PKGNAME)_$(PKGVERS).tar.gz
 BUILDDIR := "build"
 
-all: build clean
+all: doc build clean
 
 
 build: clean
@@ -28,6 +28,9 @@ clean:
 check: build
 	cd $(BUILDDIR); \
 	R CMD check ${PKGTAR}
+
+doc:
+   R -e "devtools::document()"
 
 # cmd for CI/CD without pdflatex
 ci-check: clean_build build

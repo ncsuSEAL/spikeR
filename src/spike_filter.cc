@@ -3,28 +3,17 @@
  * Created:      04.23.2023
  * License:      MIT
  **/
-#include "param.h"
 #include "spike_filter.h"
-
-/* What do we need?
-   - Option to take a previous `spike` object and update for new data
- */
-
-/*
-  We have a spike_filter function which intially takes the parameters and the
-  data.
-  - spike_filter(signal, window, threshold, spikeAmp, timeframe)
-
-*/
+#include "param.h"
 
 // [[Rcpp::export]]
-IntegerVector C_spike_filter(NumericVector &signal, List &parameter_list,
-                             Nullable<IntegerVector> dates_idx = R_NilValue
-            ) {
+IntegerVector
+C_center_spike_filter(NumericVector signal, List &parameter_list,
+                      Nullable<IntegerVector> dates_idx = R_NilValue) {
   // TODO: Reduce number of allocs happening. Should pass signal by ref and
   //       change to NA directly
 
-  Parameters params(parameter_list);
+  CenterParameters params(parameter_list);
 
   int window_floor = floor(params.window / 2);
   double center, pre_diff, post_diff;
@@ -61,7 +50,7 @@ IntegerVector C_spike_filter(NumericVector &signal, List &parameter_list,
           // values pre- and post-observation of interest
           (fabs(pre_diff + post_diff) >=
            (params.threshold * combined_stddev(pre, post))) &&
-          // And the range of dates is within the timeframe threshold
+          // And the range of dates is within the tieframe threshold
           ((dates_idx_[i + window_floor] - dates_idx_[i - window_floor]) <=
            params.timeframe)) {
         // If the difference before and after the central obs >= spike
@@ -76,6 +65,49 @@ IntegerVector C_spike_filter(NumericVector &signal, List &parameter_list,
       }
     }
   }
+
+  return dates_idx_[spikes == 1];
+}
+
+// [[Rcpp::export]]
+IntegerVector C_lagging_spike_filter(NumericVector signal,
+                                     List &parameter_list) {
+
+  // Window is lag
+  LaggingParameters params(parameter_list);
+
+  signal = na_omit(signal); // Omit NaNs from data pts
+  NumericVector filtered_datapts = signal;
+
+  IntegerVector spikes(signal.size()); // Init vector to flag outliers
+  IntegerVector dates_idx_ = seq_len(signal.size());
+
+  NumericVector lag_queue = signal[Range(0, params.lag)];
+
+  if (signal.size() > params.lag) {
+    double avg_filter = mean(lag_queue);
+    double std_filter = sample_stddev(lag_queue);
+
+    for (int i = (params.lag - 1); i < signal.size(); ++i) {
+      if (fabs(signal[i] - avg_filter) > params.threshold * std_filter) {
+        if (signal[i] > avg_filter) {
+          spikes[i] = 1;
+        } else {
+          spikes[i] = 1; // -1
+        }
+        filtered_datapts[i] =
+            (params.influence * signal[i] +
+             (1 - params.influence) * filtered_datapts[i - 1]);
+      } else {
+        spikes[i] = 0;
+        filtered_datapts[i] = signal[i];
+      }
+      lag_queue = filtered_datapts[Range(i - params.lag, i)];
+      avg_filter = mean(lag_queue);
+      std_filter = sample_stddev(lag_queue);
+    }
+  }
+
 
   return dates_idx_[spikes == 1];
 }

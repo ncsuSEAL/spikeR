@@ -3,4 +3,5 @@
 export(spike_filter)
 import(Rcpp)
 import(methods)
+importFrom(stats, na.omit)
 useDynLib(spiker)

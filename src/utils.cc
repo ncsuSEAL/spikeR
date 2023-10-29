@@ -1,5 +1,13 @@
 #include "common.h"
 
+// sample variances
+
+// Sample stddev
+double sample_stddev(NumericVector &x1)
+{
+  return sqrt(var(x1));
+}
+
 // TODO: Exapand to accept K number groups
 double combined_stddev(NumericVector &x1, NumericVector &x2)
 {
